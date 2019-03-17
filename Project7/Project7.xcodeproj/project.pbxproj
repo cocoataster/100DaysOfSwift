@@ -12,6 +12,8 @@
 		AD127BA7223ECAD00058333A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD127BA5223ECAD00058333A /* Main.storyboard */; };
 		AD127BA9223ECAD20058333A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD127BA8223ECAD20058333A /* Assets.xcassets */; };
 		AD127BAC223ECAD20058333A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD127BAA223ECAD20058333A /* LaunchScreen.storyboard */; };
+		AD127BB4223ECDD00058333A /* Petition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD127BB3223ECDD00058333A /* Petition.swift */; };
+		AD127BB6223ECE340058333A /* Petitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD127BB5223ECE340058333A /* Petitions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		AD127BA8223ECAD20058333A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD127BAB223ECAD20058333A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD127BAD223ECAD20058333A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD127BB3223ECDD00058333A /* Petition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petition.swift; sourceTree = "<group>"; };
+		AD127BB5223ECE340058333A /* Petitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petitions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			children = (
 				AD127BA1223ECAD00058333A /* AppDelegate.swift */,
 				AD127BA3223ECAD00058333A /* ViewController.swift */,
+				AD127BB3223ECDD00058333A /* Petition.swift */,
+				AD127BB5223ECE340058333A /* Petitions.swift */,
 				AD127BA5223ECAD00058333A /* Main.storyboard */,
 				AD127BA8223ECAD20058333A /* Assets.xcassets */,
 				AD127BAA223ECAD20058333A /* LaunchScreen.storyboard */,
@@ -136,7 +142,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD127BA4223ECAD00058333A /* ViewController.swift in Sources */,
+				AD127BB6223ECE340058333A /* Petitions.swift in Sources */,
 				AD127BA2223ECAD00058333A /* AppDelegate.swift in Sources */,
+				AD127BB4223ECDD00058333A /* Petition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
