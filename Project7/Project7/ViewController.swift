@@ -11,13 +11,15 @@ import UIKit
 class ViewController: UITableViewController {
     
     var petitions = [Petition]()
+    var filterPetitions = [Petition]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let urlString: String
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Credits", style: .done, target: self, action: #selector(showCredits))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Credits", style: .done, target: self, action: #selector(showCredits))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(showFilter))
         
         if navigationController?.tabBarItem.tag == 0 {
             urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
@@ -46,22 +48,48 @@ class ViewController: UITableViewController {
         present(ac, animated: true)
     }
     
+    @objc func showFilter() {
+        let ac = UIAlertController(title: "Search by:", message: nil, preferredStyle: .alert)
+        ac.addTextField()
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak ac] _ in
+            guard let word = ac?.textFields?.first?.text else { return }
+            self?.filterBy(word)
+        }
+        let cancelAction = UIAlertAction(title: "Remove Filter", style: .destructive) { [weak self] _ in
+            guard let petitions = self?.petitions else { return }
+            self?.filterPetitions = petitions
+            self?.tableView.reloadData()
+        }
+        ac.addAction(cancelAction)
+        ac.addAction(submitAction)
+        present(ac, animated: true)
+        
+    }
+    
+    func filterBy(_ word: String) {
+        // Add to filterPetitions if Petition.title contains word
+        filterPetitions = petitions.filter { $0.title.contains(word) }
+        tableView.reloadData()
+    }
+    
     func parse(json: Data) {
         let decoder = JSONDecoder()
         
         if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
             petitions = jsonPetitions.results
+            filterPetitions = petitions
             tableView.reloadData()
         }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return petitions.count
+        return filterPetitions.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let petition = petitions[indexPath.row]
+        let petition = filterPetitions[indexPath.row]
         
         cell.textLabel?.text = petition.title
         cell.detailTextLabel?.text = petition.body
@@ -71,7 +99,7 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = DetailViewController()
-        vc.detailItem = petitions[indexPath.row]
+        vc.detailItem = filterPetitions[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
 
