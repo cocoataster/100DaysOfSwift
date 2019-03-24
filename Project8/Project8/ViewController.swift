@@ -14,9 +14,9 @@ class ViewController: UIViewController {
     var answersLabel: UILabel!
     var currentAnswer: UITextField!
     var scoreLabel: UILabel!
-    var letterButtons = [UIButton]()
+    var letterButtons = [WordButton]()
     
-    var activatedButtons = [UIButton]()
+    var activatedButtons = [WordButton]()
     var solutions = [String]()
     
     var score = 0 {
@@ -26,6 +26,8 @@ class ViewController: UIViewController {
     }
     
     var level = 1
+    
+    // MARK: - Load View
     
     override func loadView() {
         view = UIView()
@@ -97,6 +99,8 @@ class ViewController: UIViewController {
             buttonsView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -20)
         ]
         
+        // Group and add contraints
+        
         let constraintsArray: [[NSLayoutConstraint]] = [scorelabelConstraints, cluesLabelContraints, answerLabelConstraints, currentAnswerLabelConstraints, submitButtonConstraints, clearButtonConstraints, buttonsViewConstraints]
         
         for constraints in constraintsArray { NSLayoutConstraint.activate(constraints) }
@@ -106,9 +110,8 @@ class ViewController: UIViewController {
         
         for row in 0..<4 {
             for column in 0..<5 {
-                let letterButton = UIButton(type: .system)
-                letterButton.titleLabel?.font = UIFont.systemFont(ofSize: 36)
-                letterButton.setTitle("WWW", for: .normal)
+                let letterButton = WordButton()
+                
                 letterButton.addTarget(self, action: #selector(letterTapped(_:)), for: .touchUpInside)
                 
                 let frame = CGRect(x: column * width, y: row * heigh, width: width, height: heigh)
@@ -124,6 +127,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         loadLevel()
     }
+    
+    // MARK: - Set-up Outlets
 
     func setUpOutlets() {
         // Score Label
@@ -162,16 +167,20 @@ class ViewController: UIViewController {
         view.addSubview(currentAnswer)
     }
     
-    @objc func letterTapped(_ sender: UIButton) {
+    // MARK: - Tab Logic
+    
+    @objc func letterTapped(_ sender: WordButton) {
         guard let buttonTitle = sender.titleLabel?.text else { return }
         
         currentAnswer.text = currentAnswer.text?.appending(buttonTitle)
         activatedButtons.append(sender)
         sender.isEnabled = false
-        sender.isOpaque = true
+        sender.isClear = true
     }
     
-    @objc func submitTapped(_ sender: UIButton) {
+    // MARK: - Submit Logic
+    
+    @objc func submitTapped(_ sender: WordButton) {
         guard let answerText = currentAnswer.text else { return }
         
         if let solutionPosition = solutions.firstIndex(of: answerText) {
@@ -200,20 +209,24 @@ class ViewController: UIViewController {
         
         for button in letterButtons {
             button.isEnabled = true
-            button.isOpaque = false
+            button.isClear = false
         }
     }
     
-    @objc func clearTapped(_ sender: UIButton) {
+    // MARK: - Clear Logic
+    
+    @objc func clearTapped(_ sender: WordButton) {
         currentAnswer.text = ""
         
         for button in activatedButtons {
             button.isEnabled = true
-            button.isOpaque = false
+            button.isClear = false
         }
         
         activatedButtons.removeAll()
     }
+    
+    // MARK: - Load Level
     
     func loadLevel() {
         var clueString = ""

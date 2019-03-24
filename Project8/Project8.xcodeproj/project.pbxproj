@@ -14,6 +14,7 @@
 		AD127BD0223FF14F0058333A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD127BCE223FF14F0058333A /* LaunchScreen.storyboard */; };
 		AD127BD922414AA50058333A /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = AD127BD722414AA50058333A /* level1.txt */; };
 		AD127BDA22414AA50058333A /* level2.txt in Resources */ = {isa = PBXBuildFile; fileRef = AD127BD822414AA50058333A /* level2.txt */; };
+		ADF7673F22480BC300DF37ED /* WordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF7673E22480BC300DF37ED /* WordButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		AD127BD1223FF14F0058333A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD127BD722414AA50058333A /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
 		AD127BD822414AA50058333A /* level2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level2.txt; sourceTree = "<group>"; };
+		ADF7673E22480BC300DF37ED /* WordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				AD127BD1223FF14F0058333A /* Info.plist */,
 				AD127BD722414AA50058333A /* level1.txt */,
 				AD127BD822414AA50058333A /* level2.txt */,
+				ADF7673E22480BC300DF37ED /* WordButton.swift */,
 			);
 			path = Project8;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADF7673F22480BC300DF37ED /* WordButton.swift in Sources */,
 				AD127BC8223FF14D0058333A /* ViewController.swift in Sources */,
 				AD127BC6223FF14D0058333A /* AppDelegate.swift in Sources */,
 			);
