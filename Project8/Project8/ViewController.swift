@@ -25,6 +25,8 @@ class ViewController: UIViewController {
         }
     }
     
+    var rightSubmits = 0
+    
     var level = 1
     
     // MARK: - Load View
@@ -192,13 +194,16 @@ class ViewController: UIViewController {
             
             currentAnswer.text = ""
             score += 1
+            rightSubmits += 1
             
-            if score % 7 == 0 {
+            if rightSubmits % 7 == 0 {
                 let ac = UIAlertController(title: "Well done!", message: "Ready for the next level?", preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
                 present(ac, animated: true)
             }
         } else {
+            score -= 1
+            
             let ac = UIAlertController(title: "Wrong Answer", message: "Please try again", preferredStyle: .alert)
             //ac.addAction(UIAlertAction(title: "Try Again", style: .default))
             present(ac, animated: true)
