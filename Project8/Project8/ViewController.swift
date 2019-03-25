@@ -122,11 +122,6 @@ class ViewController: UIViewController {
             }
         }
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        loadLevel()
-    }
     
     // MARK: - Set-up Outlets
 
@@ -166,6 +161,11 @@ class ViewController: UIViewController {
         currentAnswer.isUserInteractionEnabled = false
         view.addSubview(currentAnswer)
     }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadLevel()
+    }
     
     // MARK: - Tab Logic
     
@@ -197,6 +197,17 @@ class ViewController: UIViewController {
                 let ac = UIAlertController(title: "Well done!", message: "Ready for the next level?", preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
                 present(ac, animated: true)
+            }
+        } else {
+            let ac = UIAlertController(title: "Wrong Answer", message: "Please try again", preferredStyle: .alert)
+            //ac.addAction(UIAlertAction(title: "Try Again", style: .default))
+            present(ac, animated: true)
+            
+            // Auto Dismiss after 1.5 seconds
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                ac.dismiss(animated: true) { [weak self] in
+                    self?.clearTapped(sender)
+                }
             }
         }
     }
